@@ -387,3 +387,34 @@ if (! function_exists('getThumbImageName')) {
     }
 }
 
+if (!function_exists('recruitment_process_icons')) {
+    /**
+     * @param $index
+     * @return string
+     */
+    function recruitment_process_icons($index): string
+    {
+        $icon   = '';
+        if($index == 0){
+            $icon = 'icon-self-service';
+        }else if($index == 1){
+            $icon = 'icon-insurance';
+        }else if($index == 2){
+            $icon = 'icon-life-insurance';
+        }else if($index == 3){
+            $icon = 'icon-family';
+        }else if($index == 4){
+            $icon = 'icon-meeting';
+        }else if($index == 5){
+            $icon = 'icon-guarantee';
+        }else if($index == 6){
+            $icon = 'icon-agreement';
+        }else if($index == 7){
+            $icon = 'icon-save-money';
+        }else{
+            $icon = 'icon-team';
+        }
+
+        return $icon;
+    }
+}

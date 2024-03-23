@@ -63,7 +63,7 @@ class HomePageController extends BackendBaseController
         $data                       = $this->getCommonData();
         $data['sliders']            = Slider::active()->descending()->get();
         $data['testimonials']       = Testimonial::active()->descending()->limit(8)->get();
-        $data['services']           = Service::active()->latest()->take(4)->get();
+        $data['services']           = Service::orderBy('order', 'asc')->take(4)->get();
         $data['blogs']              = Blog::active()->descending()->latest()->take(3)->get();
         $data['jobs']               = Job::active()->descending()->latest()->take(6)->get();
         $data['homepage']           = Welcome::first();
