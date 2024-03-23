@@ -1,4 +1,4 @@
-<section class="portfolio-details pt-0">
+<section class="portfolio-details">
     <div class="container">
         @if($element->first()->subtitle)
             <div class="sec-title sec-title-stand">

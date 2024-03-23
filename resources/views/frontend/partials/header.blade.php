@@ -130,9 +130,6 @@
         </div><!-- /.container-fluid -->
     </div><!-- /.topbar-one -->
 
-
-
-
     <header class="main-header sticky-header sticky-header--normal">
         <div class="container-fluid">
             <div class="main-header__inner">

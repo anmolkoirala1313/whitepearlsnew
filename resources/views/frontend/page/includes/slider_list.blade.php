@@ -49,7 +49,10 @@
             </div><!-- /.sec-title -->
         </div>
         <div class="row gutter-y-30">
-            <div class="portfolio-page__carousel modins-owl__carousel modins-owl__carousel--with-shadow modins-owl__carousel--basic-nav owl-carousel owl-theme" data-owl-options='{
+            @if( $data['slider_list_type'] == 'normal')
+                @include($base_route.'includes.slider_list_detail')
+            @else
+                <div class="portfolio-page__carousel modins-owl__carousel modins-owl__carousel--with-shadow modins-owl__carousel--basic-nav owl-carousel owl-theme" data-owl-options='{
                                     "items": 1,
                                     "margin": 0,
                                     "loop": true,
@@ -72,22 +75,34 @@
                                         }
                                     }
                                 }'>
-                @foreach($element as $index=>$row)
-                    <div class="item d-flex align-items-stretch">
-                        <div class="blog-card-three h-100" style="    background-color: #f4f3f8;">
-                            <img src="{{ asset(imagePath($row->image)) }}" alt="">
-                            <div class="blog-card-three__content">
-                                <h3 class="blog-card-three__title">
-                                    <a href="{{ route($base_route.'slider_single',@$row->list_subtitle) }}">
-                                        {{ $row->list_title ?? '' }}
-                                    </a>
-                                </h3>
-                                <p>{{ elipsis( strip_tags($row->list_description) )}}</p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+                    @include($base_route.'includes.slider_list_detail')
+                </div>
+            @endif
+{{--            <div class="portfolio-page__carousel modins-owl__carousel modins-owl__carousel--with-shadow modins-owl__carousel--basic-nav owl-carousel owl-theme" data-owl-options='{--}}
+{{--                                    "items": 1,--}}
+{{--                                    "margin": 0,--}}
+{{--                                    "loop": true,--}}
+{{--                                    "smartSpeed": 700,--}}
+{{--                                    "nav": false,--}}
+{{--                                    "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],--}}
+{{--                                    "dots": true,--}}
+{{--                                    "autoplay": true,--}}
+{{--                                    "responsive": {--}}
+{{--                                        "0": {--}}
+{{--                                            "items": 1--}}
+{{--                                        },--}}
+{{--                                        "576": {--}}
+{{--                                            "items": 2,--}}
+{{--                                            "margin": 30--}}
+{{--                                        },--}}
+{{--                                        "992": {--}}
+{{--                                            "items": 3,--}}
+{{--                                            "margin": 30--}}
+{{--                                        }--}}
+{{--                                    }--}}
+{{--                                }'>--}}
+{{--               --}}
+{{--            </div>--}}
         </div>
     </div>
 </div>

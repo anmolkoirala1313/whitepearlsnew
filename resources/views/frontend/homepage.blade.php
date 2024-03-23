@@ -492,7 +492,7 @@
                         <div class="col-md-6 col-lg-6 d-flex align-items-stretch">
                             <div class="service-three-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='0ms'>
                                 <div class="service-three-card__inner">
-                                    <div class="service-three-card__icon">
+                                    <div class="service-three-card__icon card-icon-alternate">
                                         <i class="{{ core_value_icon($index) }}"></i>
                                     </div>
                                     <div class="service-three-card__content">
