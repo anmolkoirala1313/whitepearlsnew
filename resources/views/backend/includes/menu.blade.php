@@ -96,11 +96,11 @@
                                    class="nav-link {{request()->route()->getName() == 'backend.career.job.index' ? 'active':''}}"
                                    data-key="t-multi-level-career"> Job </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('backend.career.company_career.index') }}"
-                                   class="nav-link {{request()->route()->getName() == 'backend.career.company_career.index' ? 'active':''}}"
-                                   data-key="t-multi-level-career"> Company Career </a>
-                            </li>
+{{--                            <li class="nav-item">--}}
+{{--                                <a href="{{ route('backend.career.company_career.index') }}"--}}
+{{--                                   class="nav-link {{request()->route()->getName() == 'backend.career.company_career.index' ? 'active':''}}"--}}
+{{--                                   data-key="t-multi-level-career"> Company Career </a>--}}
+{{--                            </li>--}}
                         </ul>
                     </div>
                 </li>

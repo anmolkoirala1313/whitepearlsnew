@@ -1,48 +1,33 @@
-<div class="services-details__left">
-    <div class="sidebar__single sidebar__search service-search" style="background-color: #f7f9fa;">
-        <div class="sidebar__title-box">
-            <h3 class="sidebar__title">Search Here</h3>
-        </div>
-        {!! Form::open(['route' => $base_route.'search', 'method'=>'GET', 'class'=>'sidebar__search-form']) !!}
-            <input type="text" placeholder="Search Service" name="for" style="    background-color: #ffffff;">
-            <button type="submit"><i class="icon-magnifying-glass"></i></button>
+<div class="service-sidebar">
+    <div class="sidebar__single sidebar__search-wrap">
+        {!! Form::open(['route' => $base_route.'search', 'method'=>'GET', 'class'=>'sidebar__search']) !!}
+        <input type="text" id="search" placeholder="Search Service..." name="for"   oninvalid="this.setCustomValidity('Type a keyword')" oninput="this.setCustomValidity('')" required/>
+        <button type="submit" aria-label="search submit">
+            <span><i class="icon-magnifying-glass"></i></span>
+        </button>
         {!! Form::close() !!}
     </div>
-    @if(count( $data['latest']) > 0)
 
-        <div class="services-details__services-box">
-            <ul class="services-details__services-list list-unstyled">
+    @if(count( $data['latest']) > 0)
+        <div class="service-sidebar__single mt-20">
+            <ul class="list-unstyled service-sidebar__nav">
                 @foreach($data['latest'] as $latest)
-                    <li>
-                        <a href="{{ route('frontend.service.show',$latest->key) }}">
-                            {{$latest->title ?? ''}}<span
-                                class="icon-right-arrow1"></span></a>
-                    </li>
-                @endforeach
+                    <li><a href="{{ route('frontend.service.show',$latest->key) }}"> {{$latest->title ?? ''}}</a></li>
+                @endforeach`
             </ul>
         </div>
     @endif
-    <div class="services-details__contact">
-        <h3 class="services-details__contact-title">Contact us</h3>
-        <ul class="services-details__contact-list list-unstyled">
-            <li>
-                <div class="icon">
-                    <span class="icon-location-1"></span>
-                </div>
-                <p>{{   $data['setting']->address ?? '' }}</p>
-            </li>
-            <li>
-                <div class="icon">
-                    <span class="icon-phone"></span>
-                </div>
-                <p><a href="tel:{{ $data['setting']->phone ?? $data['setting']->mobile }}">{{ $data['setting']->phone ?? $data['setting']->mobile }}</a></p>
-            </li>
-            <li>
-                <div class="icon">
-                    <span class="icon-envelope"></span>
-                </div>
-                <p><a href="mailto:{{ $data['setting']->email }}">{{ $data['setting']->email }}</a></p>
-            </li>
-        </ul>
+
+    <div class="service-sidebar__single ">
+        <div class="service-sidebar__contact background-base text-center" style="background-image: url( '{{ asset('assets/frontend/images/service/sidebar-service-bg.jpg') }}');">
+            <div class="service-sidebar__contact__icon">
+                <i class="icon-phone-call"></i>
+            </div>
+            <h3 class="service-sidebar__contact__title">Reach us quickly</h3><!-- /.service-sidebar__contact__title -->
+            <p class="service-sidebar__contact__number">
+                <span>Talk to an expert</span> <br>
+                <a href="tel:{{$data['setting']->phone ?? $data['setting']->mobile ?? ''}}">{{$data['setting']->phone ?? $data['setting']->mobile ?? ''}}</a>
+            </p>
+        </div>
     </div>
 </div>

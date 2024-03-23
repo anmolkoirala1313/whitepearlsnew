@@ -5,32 +5,34 @@
 
     @include($module.'includes.breadcrumb',['breadcrumb_image'=>'image-3.jpeg'])
 
-    <section class="services-details">
+    <section class="service-details">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-3 col-lg-4">
+            <div class="row gutter-y-30">
+                <div class="col-md-12 col-lg-4">
                     @include($view_path.'includes.sidebar')
                 </div>
-                <div class="col-xl-9 col-lg-8">
-                    <div class="services-details__right">
-                        <div class="services-details__img">
+                <div class="col-md-12 col-lg-8">
+                    <div class="service-details__content">
+                        <div class="service-details__thumbnail">
                             <img class="lazy" data-src="{{ asset(imagePath($data['row']->image)) }}" alt="">
                         </div>
-                        <h3 class="services-details__title-1">
-                            {{ $data['row']->title ?? '' }}
-                        </h3>
-                        <div class="services-details__text-1 text-align-justify custom-description">
-                            {!!  $data['row']->description !!}
-                        </div>
-                        <div class="news-details__tag-and-social">
-                            <div class="news-details__tag">
-                            </div>
-                            <div class="news-details__social">
-                                <span>Share on:</span>
-                                <a href="#"><i class="fab fa-facebook" onclick='fbShare("{{route('frontend.service.show',$data['row']->key)}}")'></i></a>
-                                <a href="#"><i class="fab fa-twitter" onclick='twitShare("{{route('frontend.service.show',$data['row']->key)}}","{{ $data['row']->title }}")'></i></a>
-                                <a href="#"><i class="fab fa-whatsapp" onclick='whatsappShare("{{route('frontend.service.show',$data['row']->key)}}","{{ $data['row']->title }}")'></i></a>
-                            </div>
+                        <h3 class="service-details__title">  {{ $data['row']->title ?? '' }}</h3>
+                        <div class="service-details__text custom-description text-align-justify">   {!!  $data['row']->description !!}</div>
+                    </div>
+                    <div class="blog-details__meta" style="    border-top: 1px solid var(--nmf-border-color, #e0ddea);">
+                        <h4 class="blog-details__tags__title">Share</h4>
+                        <div class="blog-details__social">
+                            <a href="#" tabindex="0" rel="noopener" aria-label="facebook">
+                                <i onclick='fbShare("{{route('frontend.service.show',$data['row']->key)}}")'
+                                   class="fab fa-facebook" aria-hidden="true"></i></a>
+
+                            <a href="#" tabindex="0" rel="noopener" aria-label="twitter">
+                                <i onclick='twitShare("{{route('frontend.service.show',$data['row']->key)}}","{{ $data['row']->title }}")'
+                                   class="fab fa-twitter" aria-hidden="true"></i></a>
+
+                            <a href="#" tabindex="0" rel="noopener" aria-label="pinterest">
+                                <i onclick='whatsappShare("{{route('frontend.service.show',$data['row']->key)}}","{{ $data['row']->title }}")'
+                                   class="fab fa-whatsapp" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
