@@ -49,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
             'frontend.activity.includes.sidebar',
             'frontend.blog.includes.sidebar',
             'frontend.page.includes.map_and_description',
+            'frontend.page.includes.basic_section',
             'error.404',
             'auth.login'], function ($view) {
             $view->with([

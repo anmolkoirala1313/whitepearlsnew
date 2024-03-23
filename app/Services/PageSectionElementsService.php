@@ -23,7 +23,7 @@ class PageSectionElementsService {
     {
         $this->model            = new PageSectionElement();
         $this->image_path       = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
-        $this->file_path       = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'files'.DIRECTORY_SEPARATOR);
+        $this->file_path         = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'files'.DIRECTORY_SEPARATOR);
     }
 
     public function syncSectionElements($request,$data)
@@ -115,7 +115,7 @@ class PageSectionElementsService {
         }
         else{
             if ($request->hasFile('image_input')) {
-                $image_name = $this->uploadImage($request->file('image_input'), '550','450');
+                $image_name = $this->uploadImage($request->file('image_input'), '550','600');
                 $request->request->add(['image' => $image_name]);
             }
             $this->model->create($request->all());
