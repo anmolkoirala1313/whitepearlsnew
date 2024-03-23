@@ -7,57 +7,63 @@
 
     @include($module.'includes.breadcrumb',['breadcrumb_image'=> 'image-2.png'])
 
-    <section class="team-page" style="padding: 90px 0 90px;">
+    <section class="team-one team-one--page">
         <div class="container">
             @if($data['heading'])
-                <div class="col-xl-6">
-                    <div class="why-choose-one__left">
-                        <div class="section-title text-left">
-                            <div class="section-title__tagline-box">
-                                <p class="section-title__tagline">{{ $data['heading']->subtitle ?? '' }}</p>
-                            </div>
-                            <h2 class="section-title__title section-title_normal">{{ $data['heading']->title ?? '' }}
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="why-choose-one__text custom-description text-align-justify">
-                    {!! $data['heading']->description ?? ''  !!}
+                <div class="sec-title" style="text-align: center;">
+                    <h6 class="sec-title__tagline">{{ $data['heading']->subtitle ?? '' }}</h6><!-- /.sec-title__tagline -->
+                    <h3 class="sec-title__title">{{ $data['heading']->title ?? '' }}</h3><!-- /.sec-title__title -->
+                    <div class="about-one__text text-align-justify custom-description heading mt-20">{!! $data['heading']->description ?? ''  !!}</div>
                 </div>
             @endif
-            <div class="row mt-4">
-                @foreach($data['rows'] as $team)
-                    <div class="col-xl-3 col-lg-6 col-md-6">
-                        <div class="team-two__single">
-                            <div class="team-two__img-box">
-                                <div class="team-two__img">
-                                    <img class="lazy" data-src="{{ asset(imagePath($team->image)) }}" alt="">
-                                </div>
-                            </div>
-                            <div class="team-two__content">
-                                <div class="team-two__name-box">
-                                    <h3 class="team-two__name"><a>{{$team->title ?? ''}}</a>
-                                    </h3>
-                                    <p class="team-two__sub-title">{{$team->designation ?? ''}}</p>
-                                </div>
-                                @if(@$team->fb_link || @$team->twitter_link || @$team->instagram_link || @$team->linkedin_link)
-                                    <div class="team-two__social">
-                                        @if($team->fb_link)
-                                            <a href="{{ $team->fb_link  ?? "#" }}"><span class="fab fa-facebook"></span></a>
-                                        @endif
-                                        @if($team->instagram_link)
-                                            <a href="{{ $team->instagram_link  ?? "#" }}"><span class="fab fa-instagram"></span></a>
-                                        @endif
-                                        @if($team->twitter_link)
-                                            <a href="{{ $team->twitter_link  ?? "#" }}"><span class="fab fa-twitter"></span></a>
-                                       @endif
-                                       @if($team->linkedin_link)
-                                            <a href="{{ $team->linkedin_link  ?? "#" }}"><span class="fab fa-linkedin"></span></a>
-                                       @endif
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
+            <div class="row gutter-y-30">
+                @foreach($data['rows'] as $index=>$row)
+                    <div class="col-md-6 col-lg-4">
+                        <div class="team-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='{{ $index }}00ms'>
+                            <div class="team-card__image">
+                                <img class="lazy" data-src="{{ asset(imagePath($row->image)) }}" alt="">
+                                <div class="team-card__hover">
+                                    @if(@$row->fb_link || @$row->twitter_link || @$row->instagram_link || @$row->linkedin_link)
+                                        <div class="team-card__social">
+                                            <i class="fa fa-share-alt"></i>
+                                            <div class="list-unstyled team-card__social__list">
+                                                @if($row->fb_link)
+                                                    <a href="{{ $row->fb_link }}">
+                                                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                                                        <span class="sr-only">Facebook</span>
+                                                    </a>
+                                                @endif
+                                                    @if($row->twitter_link)
+                                                    <a href="{{ $row->twitter_link }}">
+                                                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                                                        <span class="sr-only">Twitter</span>
+                                                    </a>
+                                                @endif
+                                                @if($row->linkedin_link)
+                                                    <a href="{{ $row->linkedin_link }}">
+                                                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                                        <span class="sr-only">LinkedIn</span>
+                                                    </a>
+                                                @endif
+                                                @if($row->instagram_link)
+                                                    <a href="{{ $row->instagram_link }}">
+                                                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                                                        <span class="sr-only">Instagram</span>
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div><!-- /.team-card__hover -->
+                            </div><!-- /.team-card__image -->
+                            <div class="team-card__content">
+                                <h3 class="team-card__title">
+                                    <a >{{$row->title ?? ''}}</a>
+                                </h3><!-- /.team-card__title -->
+                                <h6 class="team-card__designation">{{$row->designation ?? ''}}</h6><!-- /.team-card__designation -->
+                            </div><!-- /.team-card__content -->
+                            <div class="team-card__bg"></div><!-- /.team-card__image__bg -->
+                        </div><!-- /.team-card -->
                     </div>
                 @endforeach
             </div>

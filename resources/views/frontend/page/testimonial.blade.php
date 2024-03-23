@@ -7,48 +7,46 @@
 
     @include($module.'includes.breadcrumb',['breadcrumb_image'=> 'image-2.png'])
 
-    <section class="testimonials-page" style="padding: 90px 0 90px;">
+    <section class="testimonials-one testimonials-one--page">
         <div class="container">
             @if($data['heading'])
-                <div class="col-xl-6">
-                    <div class="why-choose-one__left">
-                        <div class="section-title text-left">
-                            <div class="section-title__tagline-box">
-                                <p class="section-title__tagline">{{ $data['heading']->subtitle ?? '' }}</p>
-                            </div>
-                            <h2 class="section-title__title section-title_normal">{{ $data['heading']->title ?? '' }}
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="why-choose-one__text text-align-justify">
-                    {!! $data['heading']->description ?? ''  !!}
+                <div class="sec-title" style="text-align: center;">
+                    <h6 class="sec-title__tagline">{{ $data['heading']->subtitle ?? '' }}</h6><!-- /.sec-title__tagline -->
+                    <h3 class="sec-title__title">{{ $data['heading']->title ?? '' }}</h3><!-- /.sec-title__title -->
+                    <div class="about-one__text text-align-justify custom-description heading mt-20">{!! $data['heading']->description ?? ''  !!}</div>
                 </div>
             @endif
-            <div class="row mt-4">
+            <div class="row gutter-y-30">
                 @if(count($data['rows'] ))
-                    @foreach($data['rows'] as $testimonial)
-                        <div class="col-xl-4 col-lg-6 col-md-6 d-flex align-items-stretch">
-                            <div class="testimonial-two__single">
-                                <div class="testimonial-two__client-img">
-                                    <img class="lazy" data-src="{{ asset(imagePath($testimonial->image)) }}" alt="">
+                    @foreach($data['rows'] as $index=>$testimonial)
+                        <div class="col-md-6 col-lg-6 d-flex align-items-stretch">
+                            <div class="testimonials-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='{{ $index }}00ms'>
+                                <div class="testimonials-card__inner h-100">
+                                    <div class="shape-one"><img src="{{ asset('assets/frontend/images/shapes/testi-shape-one.png') }}" alt="shape"></div>
+                                    <div class="testimonials-card__top">
+                                        <div class="testimonials-card__image">
+                                            <img src="{{ asset(imagePath($testimonial->image)) }}" alt="">
+                                        </div>
+                                        <div class="testimonials-card__top__left">
+                                            <h3 class="testimonials-card__name">
+                                                {{ $testimonial->title ?? '' }}
+                                            </h3>
+                                            <p class="testimonials-card__designation">{{ $testimonial->position ?? '' }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="testimonials-card__content">
+                                        "{{ $testimonial->description }}"
+                                    </div>
                                 </div>
-                                <div class="testimonial-two__client-info">
-                                    <h3>{{ $testimonial->title ?? '' }}</h3>
-                                    <p>{{ $testimonial->position ?? '' }}</p>
-                                </div>
-                                <p class="testimonial-two__text">
-                                   "{{ $testimonial->description }}"
-                                </p>
                             </div>
                         </div>
                     @endforeach
-                        <div class="portfolio-page__pagination">
-                            {{ $data['rows']->links('vendor.pagination.default') }}
-                        </div>
                 @endif
-
+                <div class="pagination-block">
+                    {{ $data['rows']->links('vendor.pagination.default') }}
+                </div>
             </div>
+
         </div>
     </section>
 
