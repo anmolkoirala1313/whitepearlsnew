@@ -177,13 +177,13 @@ if (!function_exists('get_icons')) {
     function get_icons($index){
         $icon   = '';
         if($index == 0){
-            $icon = 'flaticon-graph';
+            $icon = 'icon-online-registration';
         }else if($index == 1){
-            $icon = 'flaticon-analysis';
+            $icon = 'icon-employees';
         }else if($index == 2){
-            $icon = 'flaticon-sports-and-competition';
+            $icon = 'icon-guarantee';
         }else{
-            $icon = 'icon-happy';
+            $icon = 'icon-insurance';
         }
 
         return $icon;
@@ -358,13 +358,13 @@ if (!function_exists('get_flash_card_icons')) {
     function get_flash_card_icons($index): string
     {
         if ($index == 0) {
-            $icon = 'icon-icon-start-ups';
+            $icon = 'icon-meeting';
         } else if ($index == 1) {
-            $icon = 'icon-icon-successful-project';
+            $icon = 'icon-insurance';
         } else if ($index == 2) {
-            $icon = 'icon-icon-years-experience';
+            $icon = 'icon-guarantee';
         } else {
-            $icon = 'icon-star-1';
+            $icon = 'icon-team';
         }
 
         return $icon;

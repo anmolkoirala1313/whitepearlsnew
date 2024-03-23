@@ -36,3 +36,34 @@
         </div>
     </div>
 </section>
+
+
+<div class="about-two about-two--home">
+    <div class="about-two__bg">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="about-two__left wow">
+
+                    <div class="about-two__img-1">
+                        <img class="lazy" data-src="{{ asset(imagePath($element->first()->image)) }}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-two__right">
+                    <div class="sec-title">
+
+                        <h6 class="sec-title__tagline">{{ $element->first()->subtitle ?? '' }}</h6><!-- /.sec-title__tagline -->
+
+                        <h3 class="sec-title__title">{{ $element->first()->title ?? '' }}</h3><!-- /.sec-title__title -->
+                    </div><!-- /.sec-title -->
+                    <div class="about-two__info text-align-justify">
+                        {!! $element->first()->description ?? '' !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

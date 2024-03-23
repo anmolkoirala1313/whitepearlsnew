@@ -1,17 +1,19 @@
-<section class="cta-one mt-5">
+<section class="funfact-one" style=" padding-bottom: 30px;padding-top: 20px; background-image:url( '{{asset('assets/frontend/images/shapes/funfact-shape.png')}}' );">
     <div class="container">
-        <div class="cta-one__inner">
-            <div class="counter-one__bg float-bob-y" style="background-image: url({{ asset('assets/frontend/images/backgrounds/counter-one-bg.png') }});"></div>
-            <div class="cta-one__title-box">
-                <h3 class="cta-one__title">  {{ $element->first()->title ?? '' }}</h3>
-                <p class="cta-one__text">{{ $element->first()->subtitle ?? '' }}</p>
+        <div class="cta-one__inner_two">
+            <div class="cta-one__headline">
+                <div class="cta-one__icon">
+                    <i class="icon-folder"></i>
+                </div>
+                <div class="cta-one__content">
+                    <h3 class="cta-one__title" style="font-size: 30px;"> {{ $element->first()->title ?? '' }}</h3>
+                </div>
             </div>
             @if($element->first()->button_link)
-                <div class="cta-one__btn-box">
-                    <a href="{{ $element->first()->button_link }}" class="cta-one__btn thm-btn">{{ $element->first()->button ?? 'Learn More' }}</a>
+                <div class="cta-one__btn">
+                    <a href="{{ $element->first()->button_link }}" class="modins-btn modins-btn-white">{{ $element->first()->button ?? 'Learn More' }} <em></em></a>
                 </div>
             @endif
-
         </div>
-    </div>
+    </div><!-- /.container -->
 </section>

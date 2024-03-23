@@ -27,15 +27,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 mt-3">
-                        <div class="mb-1">
-                            <label>Sub Title </label>
-                            <input type="text" class="form-control" maxlength="40" name="subtitle" value="{{$call_to_action->subtitle ?? null}}">
-                            <div class="invalid-feedback">
-                                Please enter the basic section sub title.
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="col-lg-6 mt-3">--}}
+{{--                        <div class="mb-1">--}}
+{{--                            <label>Sub Title </label>--}}
+{{--                            <input type="text" class="form-control" maxlength="40" name="subtitle" value="{{$call_to_action->subtitle ?? null}}">--}}
+{{--                            <div class="invalid-feedback">--}}
+{{--                                Please enter the basic section sub title.--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="col-lg-6">
                         <div class="mb-1">
                             <label>Button Text </label>
