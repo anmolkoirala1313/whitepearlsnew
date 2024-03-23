@@ -1,39 +1,26 @@
-<div class="services-details__left">
+<div class="service-sidebar">
     @if(count( $data['latest']) > 0)
-
-        <div class="services-details__services-box">
-            <ul class="services-details__services-list list-unstyled">
+        <div class="service-sidebar__single">
+            <ul class="list-unstyled service-sidebar__nav">
                 @foreach($data['latest'] as $latest)
-                    <li>
-                        <a href="{{route($base_route.'slider_single',@$latest->list_subtitle)}}">
-                            {{$latest->list_title ?? ''}}<span
-                                class="icon-right-arrow1"></span></a>
-                    </li>
+                    <li><a href="{{route($base_route.'slider_single',@$latest->list_subtitle)}}">
+                            {{$latest->list_title ?? ''}}
+                        </a></li>
                 @endforeach
             </ul>
         </div>
     @endif
-    <div class="services-details__contact">
-        <h3 class="services-details__contact-title">Contact us</h3>
-        <ul class="services-details__contact-list list-unstyled">
-            <li>
-                <div class="icon">
-                    <span class="icon-location-1"></span>
-                </div>
-                <p>{{   $data['setting']->address ?? '' }}</p>
-            </li>
-            <li>
-                <div class="icon">
-                    <span class="icon-phone"></span>
-                </div>
-                <p><a href="tel:{{ $data['setting']->phone ?? $data['setting']->mobile }}">{{ $data['setting']->phone ?? $data['setting']->mobile }}</a></p>
-            </li>
-            <li>
-                <div class="icon">
-                    <span class="icon-envelope"></span>
-                </div>
-                <p><a href="mailto:{{ $data['setting']->email }}">{{ $data['setting']->email }}</a></p>
-            </li>
-        </ul>
+
+    <div class="service-sidebar__single ">
+        <div class="service-sidebar__contact background-base text-center" style="background-image: url( '{{ asset('assets/frontend/images/service/sidebar-service-bg.jpg') }}');">
+            <div class="service-sidebar__contact__icon">
+                <i class="icon-phone-call"></i>
+            </div>
+            <h3 class="service-sidebar__contact__title">Reach us quickly</h3><!-- /.service-sidebar__contact__title -->
+            <p class="service-sidebar__contact__number">
+                <span>Talk to an expert</span> <br>
+                <a href="tel:{{$data['setting']->phone ?? $data['setting']->mobile ?? ''}}">{{$data['setting']->phone ?? $data['setting']->mobile ?? ''}}</a>
+            </p>
+        </div>
     </div>
 </div>

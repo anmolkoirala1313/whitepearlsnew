@@ -3,7 +3,8 @@
 <link rel="stylesheet" href="{{ asset('assets/frontend/css/magnific-popup.css') }}" />
 <style>
     .image-dimension{
-        height: 270px;
+        height: 370px;
+        width: 370px;
         object-fit: cover;
     }
 </style>

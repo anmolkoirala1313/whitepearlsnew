@@ -5,21 +5,19 @@
 
     @include($view_path.'slider_list.includes.breadcrumb',['breadcrumb_image'=>'image-3.jpeg'])
 
-    <section class="services-details">
+    <section class="service-details">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-3 col-lg-4">
+            <div class="row gutter-y-30">
+                <div class="col-md-12 col-lg-4">
                     @include($view_path.'slider_list.includes.sidebar')
                 </div>
-                <div class="col-xl-9 col-lg-8">
-                    <div class="services-details__right">
-                        <div class="services-details__img">
+                <div class="col-md-12 col-lg-8">
+                    <div class="service-details__content">
+                        <div class="service-details__thumbnail">
                             <img class="lazy" data-src="{{ asset(imagePath($data['row']->image)) }}" alt="">
                         </div>
-                        <h3 class="services-details__title-1">
-                            {{ $data['row']->list_title ?? '' }}
-                        </h3>
-                        <div class="services-details__text-1 text-align-justify custom-description">
+                        <h3 class="service-details__title">  {{ $data['row']->list_title ?? '' }}</h3>
+                        <div class="service-details__text custom-description text-align-justify">
                             {!!  $data['row']->list_description !!}
                         </div>
                     </div>
