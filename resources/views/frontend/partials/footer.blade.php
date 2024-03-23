@@ -19,7 +19,7 @@
                             {!! ucfirst(@$setting_data->description ?? '') !!}
                         </div>
                         <!-- /.footer-widget__text -->
-                        <div class="footer-widget__social">
+                        <div class="footer-widget__social mt-20">
                             @if(@$setting_data->facebook)
                                 <a href="{{ @$setting_data->facebook }}">
                                     <i class="fab fa-facebook" aria-hidden="true"></i>
