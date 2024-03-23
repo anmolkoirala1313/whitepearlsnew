@@ -10770,4 +10770,8 @@ body.boxed-wrapper .page-wrapper {
 .sec-title-stand {
     text-align: center;
 }
+
+.heading p{
+    text-align: justify;
+}
 /*# sourceMappingURL=nmf.css.map */

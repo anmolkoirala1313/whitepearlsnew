@@ -7,48 +7,43 @@
 
     @include($module.'includes.breadcrumb',['breadcrumb_image'=> 'image-2.png'])
 
-    <section class="portfolio-page">
+    <section class="portfolio-one portfolio-page" style="padding-top: 70px;">
         <div class="container">
             @if($data['heading'])
-                <div class="col-xl-6">
-                    <div class="why-choose-one__left">
-                        <div class="section-title text-left">
-                            <div class="section-title__tagline-box">
-                                <p class="section-title__tagline">{{ $data['heading']->subtitle ?? '' }}</p>
-                            </div>
-                            <h2 class="section-title__title section-title_normal">{{ $data['heading']->title ?? '' }}
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="why-choose-one__text custom-description text-align-justify">
-                    {!! $data['heading']->description ?? ''  !!}
+                <div class="sec-title" style="text-align: center;">
+                    <h6 class="sec-title__tagline">{{ $data['heading']->subtitle ?? '' }}</h6><!-- /.sec-title__tagline -->
+                    <h3 class="sec-title__title">{{ $data['heading']->title ?? '' }}</h3><!-- /.sec-title__title -->
+                    <div class="about-one__text text-align-justify custom-description heading mt-20">{!! $data['heading']->description ?? ''  !!}</div>
                 </div>
             @endif
-            <div class="row filter-layout mt-4">
+            <div class="row gutter-y-30">
                 @foreach($data['rows'] as $row)
-                    <div class="col-xl-4 col-lg-6 col-md-6">
-                        <div class="portfolio-three__single">
-                            <div class="portfolio-three__img-box">
-                                <div class="portfolio-three__img">
-                                    <img class="lazy" data-src="{{ asset(imagePath($row->image)) }}" alt="">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="portfolio-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='0ms'>
+                            <div class="portfolio-card__image">
+                                <img class="lazy" data-src="{{ asset(imagePath($row->image)) }}" alt="">
+                            </div><!-- /.portfolio-card__image -->
+                            <div class="portfolio-card__content">
+                                <div class="portfolio-card__head">
+                                    <h3 class="portfolio-card__title">
+                                        <a href="{{ route('frontend.page.album_gallery',$row->slug) }}">{{ $row->title ?? '' }}</a>
+                                    </h3><!-- /.portfolio-card__title -->
+                                    <h6 class="portfolio-card__tagline">Images: ({{ $row->album_gallery_count }})</h6>
                                 </div>
-                            </div>
-                            <div class="portfolio-three__content">
-                                <p class="portfolio-three__sub-title">Images: ({{ $row->album_gallery_count }})</p>
-                                <h3 class="portfolio-three__title">
-                                    <a href="{{ route('frontend.page.album_gallery',$row->slug) }}">{{ $row->title ?? '' }}</a></h3>
+                                <a href="{{ route('frontend.page.album_gallery',$row->slug) }}" class="portfolio-card__link">
+                                    <i class="icon-magnifying-glass"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                 @endforeach
-
             </div>
-            <div class="portfolio-page__pagination">
-                {{ $data['rows']->links('vendor.pagination.default') }}
-            </div>
+                <div class="portfolio-page__pagination">
+                    {{ $data['rows']->links('vendor.pagination.default') }}
+                </div>
         </div>
     </section>
+
 @endsection
 @section('js')
     <script src="{{asset('assets/common/lazyload.js')}}"></script>
