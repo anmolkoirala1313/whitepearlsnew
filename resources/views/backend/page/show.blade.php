@@ -86,9 +86,6 @@
                                         @if($value == 'document')
                                             @include($view_path.'includes.document')
                                         @endif
-                                        @if($value == 'image_and_list')
-                                            @include($view_path.'includes.image_and_list')
-                                        @endif
                                     </div>
                                 @endforeach
                             </div>
@@ -111,5 +108,5 @@
     <script src="{{asset('assets/common/general.js')}}"></script>
     @include($view_path.'partials.section_element_script')
     @include($module.'includes.toast_message')
-    @include($module.'includes.gallery')
+    @include($module.'includes/gallery')
 @endsection

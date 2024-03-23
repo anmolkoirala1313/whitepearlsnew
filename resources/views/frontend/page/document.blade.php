@@ -1,44 +1,47 @@
 @extends('frontend.layouts.master')
 @section('title') {{ $page }} @endsection
 @section('css')
-    <link rel="stylesheet" href="{{asset('assets/common/frontend_datatable.css')}}">
-
+    <style>
+        .thead-theme{
+            background: #ec673396;
+        }
+    </style>
 @endsection
 
 @section('content')
 
     @include($module.'includes.breadcrumb',['breadcrumb_image'=> 'image-2.png'])
 
-    <div class="blog__standard section-padding">
+    <section class="portfolio-page" style="padding: 100px 0 40px;">
         <div class="container">
-            @if($data['rows']->first()->title)
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 text-center">
-                        <div class="about__four-right-title mb-0">
-                            <span class="subtitle-four" style="margin-bottom: 10px;">{{ $data['rows']->first()->subtitle ?? '' }} </span>
-                            <h2 style="width: 50%;margin:auto;line-height: 50px;">{{ $data['rows']->first()->title ?? '' }}</h2>
+            <div class="row">
+                <div class="col-xl-5">
+                    <div class="appointment-page__top-left">
+                        <div class="section-title__tagline-box">
+                            <p class="section-title__tagline">{{ $data['rows']->first()->subtitle ?? '' }} </p>
                         </div>
+                        <h3 class="appointment-page__top-title">{{ $data['rows']->first()->title ?? '' }}</h3>
                     </div>
-                    <p class="custom-description text-align-justify text-center mt-3">
-                        {{ $data['rows']->first()->description ?? '' }}
-                    </p>
                 </div>
-            @endif
-            <div class="row mt-2">
-                <div class="col-xl-12 col-lg-12 lg-mb-50">
-                    <div class="row">
-                        <table class="table" id="dataTable">
-                            <thead class="thead-light">
-                            <tr>
-                            <tr>
-                                <th scope="col">S.N.</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Document</th>
-                            </tr>
-                            </tr>
-                            </thead>
-                            <tbody>
+                <div class="col-xl-7">
+                    <div class="appointment-page__top-right">
+                        <p class="appointment-page__top-text">{{ $data['rows']->first()->description ?? '' }}</p>
+                    </div>
+                </div>
+            </div>
+            @if(count($data['rows']))
+                <div class="row">
+                <div class="table-responsive py-5">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">S.N.</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Document</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                             @foreach($data['rows'] as $row)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
@@ -49,13 +52,14 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
+
             </div>
+            @endif
         </div>
-    </div>
+    </section>
 @endsection
 @section('js')
     <script src="{{asset('assets/common/lazyload.js')}}"></script>

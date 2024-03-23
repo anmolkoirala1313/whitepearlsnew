@@ -198,60 +198,28 @@ if (!function_exists('core_value_icon')) {
     function core_value_icon($index): string
     {
         if($index == 0){
-            $icon = 'flaticon-meeting';
+            $icon = 'icon-business-advice';
         }else if($index == 1){
-            $icon = 'flaticon-review';
+            $icon = 'icon-planning';
         }else if($index == 2){
-            $icon = 'flaticon-seller';
+            $icon = 'icon-report';
         }else if($index == 3){
-            $icon = 'flaticon-trust';
+            $icon = 'icon-solution';
         }else if($index == 4){
-            $icon = 'flaticon-costumer';
+            $icon = 'icon-diversity';
         }else if($index == 5){
-            $icon = 'flaticon-team';
+            $icon = 'icon-risk-management';
         }else if($index == 6){
-            $icon = 'flaticon-medical-report';
+            $icon = 'icon-woman';
         }else if($index == 7){
-            $icon = 'flaticon-cost-saving';
+            $icon = 'icon-risk-management';
         }else{
-            $icon = 'flaticon-globe';
+            $icon = 'icon-icon-years-experience';
         }
 
         return $icon;
     }
 }
-
-if (!function_exists('recruitment_icon')) {
-    /**
-     * @param $index
-     * @return string
-     */
-    function recruitment_icon($index): string
-    {
-        if($index == 0){
-            $icon = 'flaticon-select';
-        }else if($index == 1){
-            $icon = 'flaticon-meeting';
-        }else if($index == 2){
-            $icon = 'flaticon-check-mark';
-        }else if($index == 3){
-            $icon = 'flaticon-trust';
-        }else if($index == 4){
-            $icon = 'flaticon-medical-report';
-        }else if($index == 5){
-            $icon = 'flaticon-seller';
-        }else if($index == 6){
-            $icon = 'flaticon-travel-insurance';
-        }else if($index == 7){
-            $icon = 'flaticon-globe';
-        }else{
-            $icon = 'flaticon-meeting';
-        }
-
-        return $icon;
-    }
-}
-
 
 if (!function_exists('get_country')) {
     /**
@@ -390,19 +358,13 @@ if (!function_exists('get_flash_card_icons')) {
     function get_flash_card_icons($index): string
     {
         if ($index == 0) {
-            $icon = 'flaticon-mission';
+            $icon = 'icon-icon-start-ups';
         } else if ($index == 1) {
-            $icon = 'flaticon-success';
+            $icon = 'icon-icon-successful-project';
         } else if ($index == 2) {
-            $icon = 'flaticon-value';
-        } else if ($index == 3) {
-            $icon = 'flaticon-select';
-        }else if ($index == 4) {
-            $icon = 'flaticon-costumer';
-        } else if ($index == 5) {
-            $icon = 'flaticon-winner';
+            $icon = 'icon-icon-years-experience';
         } else {
-            $icon = 'flaticon-trust';
+            $icon = 'icon-star-1';
         }
 
         return $icon;

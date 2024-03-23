@@ -35,7 +35,7 @@ trait ControllerOps {
     {
         $this->page_method = 'create';
         $this->page_title  = 'Create '.$this->page;
-        $data              = $this->getData();
+        $data              = [];
 
         return view($this->loadResource($this->view_path.'create'), compact('data'));
     }
@@ -73,8 +73,7 @@ trait ControllerOps {
     {
         $this->page_method = 'show';
         $this->page_title  = 'Show '.$this->page;
-        $data              = $this->getData();
-        $data['row']       = $this->model->find($id);
+        $data              = [];
 
         return view($this->loadResource($this->view_path.'show'), compact('data'));
     }

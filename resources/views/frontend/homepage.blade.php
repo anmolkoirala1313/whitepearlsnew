@@ -22,7 +22,7 @@
             @foreach($data['sliders'] as $index=>$slider)
                 <div class="item">
                     <div class="main-slider-two__item">
-                        <div class="main-slider-one__bg" style="background-image: linear-gradient(90deg, rgb(43 43 94 / 68%) 0%, rgb(43 43 94 / 53%) 35%, rgb(43 43 94 / 63%) 100%),url('{{ asset('/images/sliders/'.$slider->image) }}');"></div>
+                        <div class="main-slider-one__bg" style="background-image: linear-gradient(90deg, rgb(43 43 94 / 68%) 0%, rgb(43 43 94 / 53%) 35%, rgb(43 43 94 / 63%) 100%),url('{{ asset(imagePath($slider->image)) }}');"></div>
                         <div class="container">
                             <div class="row">
                                 <div class="col-xl-7">
@@ -121,9 +121,9 @@
 
                                 <h3 class="sec-title__title">{{ $data['homepage']->title ?? '' }}</h3><!-- /.sec-title__title -->
                             </div><!-- /.sec-title -->
-                            <p class="about-one-home__content__text-two text-align-justify">
+                            <div class="about-one-home__content__text-two text-align-justify">
                                 {!! $data['homepage']->description ?? '' !!}
-                            </p>
+                            </div>
                             @if($data['homepage']->link)
                                 <div class="about-one-home__content__wrapper">
                                     <div>
@@ -140,86 +140,94 @@
         @endif
     </section><!-- /.about-one-home -->
 
-{{--    <div class="cta-one cta-one__home mb-5">--}}
-{{--        <div class="feature-two__shape">--}}
-{{--            <img src="{{ asset('assets/frontend/images/shapes/feature-shape-2.png') }}" alt="">--}}
-{{--        </div>--}}
-{{--        <div class="container" style="max-width: 1290px;">--}}
-{{--            <div class="cta-one__inner">--}}
-{{--                <div class="cta-one__headline">--}}
-{{--                    <div class="cta-one__icon">--}}
-{{--                        <i class="icon-folder"></i>--}}
-{{--                    </div>--}}
-{{--                    <div class="cta-one__content">--}}
-{{--                        <span class="cta-one__tagline">{{ $homepage_info->action_heading2 ?? '' }}</span>--}}
-{{--                        <h3 class="cta-one__title">{{ $homepage_info->action_heading ?? '' }}</h3>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="cta-one__btn">--}}
-{{--                    <a href="{{ $homepage_info->action_link2 ?? '/contact-us'}}" class="modins-btn modins-btn-white">{{ $homepage_info->action_link ?? 'Discover More'}} <em></em></a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    @if($data['homepage']->action_title)
+        <div class="cta-one cta-one__home mb-5">
+        <div class="feature-two__shape">
+            <img src="{{ asset('assets/frontend/images/shapes/feature-shape-2.png') }}" alt="">
+        </div>
+        <div class="container" style="max-width: 1290px;">
+            <div class="cta-one__inner">
+                <div class="cta-one__headline">
+                    <div class="cta-one__icon">
+                        <i class="icon-folder"></i>
+                    </div>
+                    <div class="cta-one__content">
+                        <span class="cta-one__tagline">{{ $data['homepage']->action_subtitle ?? '' }} </span>
+                        <h3 class="cta-one__title">{{ $data['homepage']->action_title ?? '' }}</h3>
+                    </div>
+                </div>
+                <div class="cta-one__btn">
+                    <a href="{{ $data['homepage']->action_link ?? '/contact-us' }}" class="modins-btn modins-btn-white">{{ $data['homepage']->action_button ?? 'Start Here' }} <em></em></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 
-{{--    @if(count($latestServices) > 0)--}}
-{{--        <section class="service-one service-home-one pt-120 pb-120" style="background-image: url('{{ asset('assets/frontend/images/backgrounds/insurace-bg-1.jpg')  }}');">--}}
-{{--            <div class="container">--}}
-{{--                <div class="sec-title">--}}
+    @if(count($data['services']) > 0)
+        <section class="service-one service-home-one pt-120 pb-120" style="background-image: url('{{ asset('assets/frontend/images/backgrounds/insurace-bg-1.jpg')  }}');">
+            <div class="container">
+                <div class="sec-title">
 
-{{--                    <h6 class="sec-title__tagline">What we’re offering</h6><!-- /.sec-title__tagline -->--}}
+                    <h6 class="sec-title__tagline">What we’re offering</h6><!-- /.sec-title__tagline -->
+                    <h3 class="sec-title__title">We provide great categories<br> for you</h3><!-- /.sec-title__title -->
+                </div><!-- /.sec-title -->
+                <div class="row gutter-y-30">
+                    @foreach($data['services'] as $index=>$service)
+                        <div class="col-md-6 col-lg-3">
+                            <div class="portfolio-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='0ms'>
+                                <div class="portfolio-card__image">
+                                    <img class="lazy" data-src="{{ asset(thumbnailImagePath($service->image)) }}" alt="">
+                                </div><!-- /.portfolio-card__image -->
+                                <div class="portfolio-card__content">
+                                    <div class="portfolio-card__head">
+                                        <h6 class="portfolio-card__tagline"></h6>
+                                        <h3 class="portfolio-card__title">
+                                            <a href="{{ route('frontend.service.show', $service->key) }}">{{ $service->title ?? '' }}</a>
+                                        </h3><!-- /.portfolio-card__title -->
+                                    </div>
+                                    <a href="{{ route('frontend.service.show', $service->key) }}" class="portfolio-card__link">
+                                        <i class="icon-right-arrow"></i>
+                                    </a><!-- /.blog-card__link -->
+                                </div><!-- /.portfolio-card__content -->
+                            </div><!-- /.portfolio-card -->
+                        </div>
+                    @endforeach
+                </div>
 
-{{--                    <h3 class="sec-title__title">We provide great categories<br> for you</h3><!-- /.sec-title__title -->--}}
-{{--                </div><!-- /.sec-title -->--}}
-{{--                <div class="row gutter-y-30">--}}
-{{--                    @foreach(@$latestServices as $index=>$service)--}}
-{{--                        <div class="col-md-6 col-lg-3">--}}
-{{--                            <div class="portfolio-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='0ms'>--}}
-{{--                                <div class="portfolio-card__image">--}}
-{{--                                    <img class="lazy" data-src="{{asset('/images/service/thumb/thumb_'.@$service->banner_image)}}" alt="">--}}
-{{--                                </div><!-- /.portfolio-card__image -->--}}
-{{--                                <div class="portfolio-card__content">--}}
-{{--                                    <div class="portfolio-card__head">--}}
-{{--                                        <h6 class="portfolio-card__tagline"></h6>--}}
-{{--                                        <h3 class="portfolio-card__title">--}}
-{{--                                            <a href="{{route('service.single',$service->slug)}}">{{ucwords(@$service->title)}}</a>--}}
-{{--                                        </h3><!-- /.portfolio-card__title -->--}}
-{{--                                    </div>--}}
-{{--                                    <a href="{{route('service.single',$service->slug)}}" class="portfolio-card__link">--}}
-{{--                                        <i class="icon-right-arrow"></i>--}}
-{{--                                    </a><!-- /.blog-card__link -->--}}
-{{--                                </div><!-- /.portfolio-card__content -->--}}
-{{--                            </div><!-- /.portfolio-card -->--}}
-{{--                        </div>--}}
-{{--                    @endforeach--}}
-{{--                </div>--}}
+            </div><!-- /.container -->
+        </section><!-- /.service-page -->
+    @endif
 
-{{--            </div><!-- /.container -->--}}
-{{--        </section><!-- /.service-page -->--}}
-{{--    @endif--}}
-{{--    --}}
-{{--    @if(count($latestcourses) > 0)--}}
+
+{{--    @if(count($data['jobs']) > 1)--}}
 {{--        <section class="service-one service-home-one pt-120 pb-0">--}}
 {{--            <div class="container">--}}
 {{--                <div class="sec-title">--}}
-{{--                    <h6 class="sec-title__tagline">Start your journey</h6>--}}
-{{--                    <h3 class="sec-title__title">Study with our amazing <br> programme</h3>--}}
+{{--                    <h6 class="sec-title__tagline">Current demands</h6>--}}
+{{--                    <h3 class="sec-title__title">Learn more about our latest <br> jobs</h3>--}}
 {{--                </div>--}}
 {{--                <div class="row gutter-y-30 pt-20">--}}
-{{--                    @foreach(@$latestcourses as $index=>$latest)--}}
+{{--                    @foreach($data['jobs'] as $index=>$job)--}}
 {{--                        <div class="col-md-6 col-lg-4 d-flex align-items-stretch">--}}
 {{--                            <div class="service-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='0ms'>--}}
 {{--                                <div class="service-card__image">--}}
-{{--                                    <img class="lazy" data-src="{{ @$latest->image ? asset('/images/course/thumb/thumb_'.@$latest->image):''}}" alt="">--}}
+{{--                                    <img class="lazy" data-src="{{ asset(imagePath($job->image)) }}" alt="">--}}
 {{--                                    <div class="service-card__icon">--}}
 {{--                                        <i class="icon-guarantee"></i>--}}
 {{--                                    </div>--}}
 {{--                                </div>--}}
 {{--                                <div class="service-card__content">--}}
 {{--                                    <h3 class="service-card__title">--}}
-{{--                                        <a href="{{ route('study-abroad.single', $latest->slug) }}">{{ $latest->title ?? '' }}</a>--}}
+{{--                                        <a href="{{ route('frontend.job.show', $job->slug) }}">{{ $job->title ?? '' }}</a>--}}
 {{--                                    </h3>--}}
-{{--                                    <p class="service-card__info"> {{ elipsis( strip_tags($latest->description ?? '') )}}</p>--}}
+{{--                                    <p class="service-card__info">--}}
+{{--                                        @if(@$job->end_date >= date('Y-m-d'))--}}
+{{--                                            {{date('M j, Y',strtotime(@$job->start_date))}} - {{date('M j, Y',strtotime(@$job->end_date))}}--}}
+{{--                                        @else--}}
+{{--                                            Expired--}}
+{{--                                        @endif--}}
+{{--                                    </p>--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
 {{--                        </div>--}}
@@ -229,10 +237,10 @@
 {{--                            <div class="service-card__bg" style="background-image: url('{{asset('assets/frontend/images/resources/service-featured.jpg')}}');"></div>--}}
 {{--                            <div class="service-card__content">--}}
 {{--                                <h3 class="service-card__title" style="margin-top: 40px">--}}
-{{--                                    We offer best courses <br> specially made <br> for your success--}}
+{{--                                    We offer best updates on <br> current demands <br> for your success--}}
 {{--                                </h3>--}}
-{{--                                <p class="service-card__info">Start learning and exploring right away.</p>--}}
-{{--                                <a href="{{ route('study-abroad.list') }}" class="modins-btn">View All <em></em></a>--}}
+{{--                                <p class="service-card__info">Start exploring the right away.</p>--}}
+{{--                                <a href="{{ route('frontend.job.index') }}" class="modins-btn">View All <em></em></a>--}}
 {{--                            </div>--}}
 {{--                        </div>--}}
 {{--                    </div>--}}

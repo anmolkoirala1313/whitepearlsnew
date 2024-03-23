@@ -16,11 +16,11 @@ class BackendBaseModel extends Authenticatable
 
 
     public function createdBy(){
-        return $this->hasOne(User::class,'id','created_by');
+        return $this->hasOne(User::class,'created_by','id');
     }
 
     public function updatedBy(){
-        return $this->hasOne(User::class,'id','updated_by');
+        return $this->hasOne(User::class,'updated_by','id');
     }
 
     public function scopeActive(Builder $query): void

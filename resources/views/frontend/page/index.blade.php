@@ -1,18 +1,12 @@
 @extends('frontend.layouts.master')
 @section('title') {{ $page_title }} @endsection
-@section('css')
-
 <link rel="stylesheet" href="{{ asset('assets/frontend/css/magnific-popup.css') }}" />
-<link rel="stylesheet" href="{{asset('assets/common/frontend_datatable.css')}}">
-
 <style>
     .image-dimension{
-        height: 425px;
-        width: 425px;
+        height: 270px;
         object-fit: cover;
     }
 </style>
-@endsection
 @section('content')
 
     @include($module.'includes.breadcrumb',['breadcrumb_image'=> 'background_action.jpeg', 'page_image'=> $data['row']->image])
@@ -47,9 +41,6 @@
         @endif
         @if($index == 'document' && count($element)>0)
             @include($base_route.'includes.document')
-        @endif
-        @if($index == 'image_and_list' && count($element)>0)
-            @include($base_route.'includes.image_and_list')
         @endif
     @endforeach
 @endsection

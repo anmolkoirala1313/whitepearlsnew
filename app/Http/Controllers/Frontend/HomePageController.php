@@ -18,11 +18,8 @@ use App\Models\Backend\Homepage\Slider;
 use App\Models\Backend\Homepage\Welcome;
 use App\Models\Backend\ManagingDirector;
 use App\Models\Backend\News\Blog;
-use App\Models\Backend\News\Notice;
-use App\Models\Backend\News\PressRelease;
 use App\Models\Backend\Page\PageSectionGallery;
 use App\Models\Backend\PageHeading;
-use App\Models\Backend\PastPresident;
 use App\Models\Backend\Service;
 use App\Models\Backend\Setting;
 use App\Models\Backend\Team;
@@ -63,18 +60,16 @@ class HomePageController extends BackendBaseController
      */
     public function index()
     {
-        $data                           = $this->getCommonData();
-        $data['sliders']                = Slider::active()->descending()->get();
-        $data['testimonials']           = Testimonial::active()->descending()->limit(6)->get();
-        $data['services']               = Service::active()->latest()->take(4)->get();
-        $data['blogs']                  = Blog::active()->descending()->latest()->take(3)->get();
-        $data['press_release']          = PressRelease::active()->descending()->latest()->take(6)->get();
-        $data['notices']                = Notice::active()->descending()->latest()->take(4)->get();
-        $data['homepage']               = Welcome::first();
-        $data['director']               = ManagingDirector::active()->orderBy('order', 'asc')->get();
-        $data['setting']                = Setting::first();
-        $data['clients']                = Client::active()->descending()->latest()->take(10)->get();
-        $data['testimonial_heading']    = PageHeading::active()->where('type','testimonial')->first();
+        $data                       = $this->getCommonData();
+        $data['sliders']            = Slider::active()->descending()->get();
+        $data['testimonials']       = Testimonial::active()->descending()->limit(8)->get();
+        $data['services']           = Service::active()->latest()->take(4)->get();
+        $data['blogs']              = Blog::active()->descending()->latest()->take(3)->get();
+        $data['jobs']               = Job::active()->descending()->latest()->take(6)->get();
+        $data['homepage']           = Welcome::first();
+        $data['director']           = ManagingDirector::active()->orderBy('order', 'asc')->get();
+        $data['map']                = Setting::first()->google_map;
+        $data['clients']            = Client::active()->descending()->latest()->take(10)->get();
 
         return view($this->loadResource($this->view_path.'homepage'), compact('data'));
     }
@@ -83,6 +78,7 @@ class HomePageController extends BackendBaseController
     {
         return [];
     }
+
 
     public function team()
     {
@@ -94,18 +90,6 @@ class HomePageController extends BackendBaseController
         $data['heading']     = PageHeading::active()->where('type','team')->first();
 
         return view($this->loadResource($this->view_path.'page.team'), compact('data'));
-    }
-
-    public function pastPresident()
-    {
-        $this->page_method   = 'index';
-        $this->page_title    = 'Our Past Presidents';
-        $this->page          = 'Past Presidents';
-        $data                = $this->getCommonData();
-        $data['rows']        = PastPresident::active()->orderBy('order','desc')->get();
-        $data['heading']     = PageHeading::active()->where('type','past_president')->first();
-
-        return view($this->loadResource($this->view_path.'page.past_president'), compact('data'));
     }
 
     public function testimonial()
@@ -135,10 +119,10 @@ class HomePageController extends BackendBaseController
     public function albumGallery($slug)
     {
         $this->page_method     = 'index';
+        $this->page_title      = 'Our Album';
         $this->page            = 'Album';
         $data                  = $this->getCommonData();
         $data['rows']          = Album::where('slug', $slug)->with('albumGallery')->first();
-        $this->page_title      = $data['rows']->title;
 
         return view($this->loadResource($this->view_path.'page.album_gallery'), compact('data'));
     }

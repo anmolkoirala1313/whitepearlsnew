@@ -26,7 +26,7 @@ class WhyUsRequest extends FormRequest
     {
         return [
             'why_title'         => 'required|string|max:60',
-            'why_description'   => 'required|string|max:1260',
+            'why_description'   => 'required|string|max:1145',
             'image_input'     => request()->method() == 'POST' ? 'required':'nullable'.'|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }

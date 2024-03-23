@@ -25,8 +25,8 @@ class TeamRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'             => 'required|string|max:190',
-            'designation'       => 'required|string|max:190',
+            'title'             => 'required|string|max:60',
+            'designation'       => 'required|string|max:60',
             'fb_link'           => 'nullable|url',
             'twitter_link'      => 'nullable|url',
             'instagram_link'    => 'nullable|url',
@@ -39,9 +39,9 @@ class TeamRequest extends FormRequest
     {
         return [
             'title.required'            => 'Please enter title',
-            'designation.required'      => 'Please enter designation',
-            'designation.max'           => 'Designation must be less than 190 characters',
-            'title.max'                 => 'Title must be less than 190 characters',
+            'designation.required'      => 'Please enter description',
+            'designation.max'           => 'Description must be less than 60 characters',
+            'title.max'                 => 'Title must be less than 60 characters',
             'image_input.required'      => 'Please select a image',
             'fb_link.url'               => 'Please enter a valid url',
             'twitter_link.url'          => 'Please enter a valid url',

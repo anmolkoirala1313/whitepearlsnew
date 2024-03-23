@@ -42,7 +42,7 @@
                 </div>
                 <div class="card shadow-none">
                     <div class="card-header">
-                        <h5 class="card-title text-primary mb-0">Background Image Section</h5>
+                        <h5 class="card-title text-primary mb-0">Background Image Section {{ $page_method == 'edit' ? (in_array('background_image_section', $data['section_slug']) ? "image-checkbox-checked":"") : ''}}</h5>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -176,14 +176,26 @@
 
                 <div class="card shadow-none">
                     <div class="card-header">
-                        <h5 class="card-title text-primary mb-0">Image and List Section</h5>
+                        <h5 class="card-title text-primary mb-0">Slider List</h5>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12 mt-2">
-                                <label class="image-checkbox {{ $page_method == 'edit' ? (in_array('image_and_list', $data['section_slug']) ? "image-checkbox-checked":"") : ''}}">
-                                    <img class="img-responsive" src="{{asset('assets/backend/images/pages/sections/image_and_list.png')}}" width="100%"/>
-                                    <input type="checkbox" name="section[]" value="image_and_list" id="image_and_list.png" {{ $page_method == 'edit' ? (in_array('image_and_list', $data['section_slug']) ? "checked":"") : ''}} />
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {!! Form::label('slider_list_number', 'Number of Sliders', ['class' => 'form-label']) !!}
+                                    {!! Form::number('slider_list_number', $page_method == 'edit' ? $data['section_position']['slider_list'] ?? 3 : 3,['class'=>'form-control','id'=>'slider_list_number','min'=>'1','placeholder'=>'Enter number of slider list']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {!! Form::label('slider_list_type', 'Slider list type', ['class' => 'form-label']) !!}
+                                    {!! Form::select('slider_list_type', ['slider'=>'Slider','normal'=>'Normal'], $page_method == 'edit' ? $data['list_number_2']['slider_list'] ?? 'slider' : 'slider',['class'=>'form-control select2','id'=>'slider_list_type','min'=>'1','placeholder'=>'Select slider list type']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <label class="image-checkbox {{ $page_method == 'edit' ? (in_array('slider_list', $data['section_slug']) ? "image-checkbox-checked":"") : ''}}">
+                                    <img class="img-responsive" src="{{asset('assets/backend/images/pages/sections/slider_list.png')}}" width="100%"/>
+                                    <input type="checkbox" name="section[]" value="slider_list" id="slider_list.png" {{ $page_method == 'edit' ? (in_array('slider_list', $data['section_slug']) ? "checked":"") : ''}} />
                                     <i class="ri ri-check-line hidden"></i>
                                 </label>
                             </div>
@@ -191,37 +203,6 @@
 
                     </div>
                 </div>
-
-{{--                <div class="card shadow-none">--}}
-{{--                    <div class="card-header">--}}
-{{--                        <h5 class="card-title text-primary mb-0">Slider List</h5>--}}
-{{--                    </div>--}}
-{{--                    <div class="card-body">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-6">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    {!! Form::label('slider_list_number', 'Number of Sliders', ['class' => 'form-label']) !!}--}}
-{{--                                    {!! Form::number('slider_list_number', $page_method == 'edit' ? $data['section_position']['slider_list'] ?? 3 : 3,['class'=>'form-control','id'=>'slider_list_number','min'=>'1','placeholder'=>'Enter number of slider list']) !!}--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-6">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    {!! Form::label('slider_list_type', 'Slider list type', ['class' => 'form-label']) !!}--}}
-{{--                                    {!! Form::select('slider_list_type', ['slider'=>'Slider','normal'=>'Normal'], $page_method == 'edit' ? $data['list_number_2']['slider_list'] ?? 'slider' : 'slider',['class'=>'form-control select2','id'=>'slider_list_type','min'=>'1','placeholder'=>'Select slider list type']) !!}--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-12 mt-3">--}}
-{{--                                <label class="image-checkbox {{ $page_method == 'edit' ? (in_array('slider_list', $data['section_slug']) ? "image-checkbox-checked":"") : ''}}">--}}
-{{--                                    <img class="img-responsive" src="{{asset('assets/backend/images/pages/sections/slider_list.png')}}" width="100%"/>--}}
-{{--                                    <input type="checkbox" name="section[]" value="slider_list" id="slider_list.png" {{ $page_method == 'edit' ? (in_array('slider_list', $data['section_slug']) ? "checked":"") : ''}} />--}}
-{{--                                    <i class="ri ri-check-line hidden"></i>--}}
-{{--                                </label>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                    </div>--}}
-{{--                </div>--}}
-
             </div>
         </div>
     </div>

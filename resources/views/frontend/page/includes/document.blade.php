@@ -1,27 +1,30 @@
-<div class="blog__standard section-padding">
+<section class="portfolio-page" style="padding: 100px 0 40px;">
     <div class="container">
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 text-center">
-                    <div class="about__four-right-title mb-0">
-                        <span class="subtitle-four" style="margin-bottom: 10px;">{{ $element->first()->subtitle ?? '' }} </span>
-                        <h2 style="width: 50%;margin:auto;line-height: 50px;">{{ $element->first()->title ?? '' }}</h2>
+        <div class="row">
+            <div class="col-xl-5">
+                <div class="appointment-page__top-left">
+                    <div class="section-title__tagline-box">
+                        <p class="section-title__tagline">{{ $element->first()->subtitle ?? '' }} </p>
                     </div>
+                    <h3 class="appointment-page__top-title">{{ $element->first()->title ?? '' }}</h3>
                 </div>
-                <p class="custom-description text-align-justify text-center mt-3">
-                    {{ $element->first()->description ?? '' }}
-                </p>
             </div>
-        <div class="row mt-2">
-            <div class="col-xl-12 col-lg-12 lg-mb-50">
-                <div class="row">
-                    <table class="table">
-                        <thead class="thead-light">
+            <div class="col-xl-7">
+                <div class="appointment-page__top-right">
+                    <p class="appointment-page__top-text">{{ $element->first()->description ?? '' }}</p>
+                </div>
+            </div>
+        </div>
+        @if(count($element))
+            <div class="row">
+                <div class="table-responsive py-5">
+                    <table class="table table-hover table-bordered">
+                        <thead>
                         <tr>
                             <th scope="col">S.N.</th>
                             <th scope="col">Title</th>
                             <th scope="col">Description</th>
                             <th scope="col">Document</th>
-                        </tr>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,7 +41,8 @@
                         </tbody>
                     </table>
                 </div>
+
             </div>
-        </div>
+        @endif
     </div>
-</div>
+</section>

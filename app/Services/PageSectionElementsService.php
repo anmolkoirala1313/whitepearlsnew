@@ -58,11 +58,7 @@ class PageSectionElementsService {
                     if ($section && $section->image){
                         $this->deleteImage($section->image);
                     }
-                }else{
-                    $request->request->add(['image_'.$index => null]);
                 }
-
-
 
                 $this->model->updateOrCreate(
                     [
@@ -73,7 +69,7 @@ class PageSectionElementsService {
                         'title'               => $heading,
                         'subtitle'            => $subheading,
                         'list_title'          => $title,
-                        'image'               => $request['image_' . $index] ?? $section->image ?? null,
+                        'image'               => $request['image_'.$index] ?? $section->image,
                         'list_description'    => $request['list_description'][$index],
                         'status'              => $request['status'],
                         'created_by'          => $request['created_by'],
@@ -117,13 +113,9 @@ class PageSectionElementsService {
         elseif ($data['section_name'] == 'document'){
             $this->storeDocument($request, $data);
         }
-        elseif ($data['section_name'] == 'image_and_list'){
-            $this->storeImageAndList($request, $data);
-        }
-
         else{
             if ($request->hasFile('image_input')) {
-                $image_name = $this->uploadImage($request->file('image_input'), '630','600');
+                $image_name = $this->uploadImage($request->file('image_input'), '550','450');
                 $request->request->add(['image' => $image_name]);
             }
             $this->model->create($request->all());
@@ -226,7 +218,7 @@ class PageSectionElementsService {
                         'title'               => $heading,
                         'subtitle'            => $subheading,
                         'list_title'          => $title,
-                        'image'               => $request['image_'.$index] ?? $section->image ?? null,
+                        'image'               => $request['image_'.$index] ?? $section->image,
                         'list_description'    => $request['list_description'][$index],
                         'status'              => $request['status'],
                         'created_by'          => $request['created_by'],
@@ -247,9 +239,6 @@ class PageSectionElementsService {
         }
         elseif ($data['section_name'] == 'document'){
             $this->storeDocument($request, $data);
-        }
-        elseif ($data['section_name'] == 'image_and_list'){
-            $this->storeImageAndList($request, $data);
         }
     }
 
@@ -290,7 +279,7 @@ class PageSectionElementsService {
                     'subtitle'            => $subheading,
                     'description'         => $description,
                     'list_title'          => $title,
-                    'image'               => $request['image_'.$index] ?? $section->image ?? null,
+                    'image'               => $request['image_'.$index] ?? $section->image,
                     'list_description'    => $request['list_description'][$index],
                     'status'              => $request['status'],
                     'created_by'          => $request['created_by'],
@@ -308,48 +297,5 @@ class PageSectionElementsService {
             }
         }
 
-    }
-
-    private function storeImageAndList($request, $data){
-        $image_list       = PageSection::find($data['section_id']);
-        $image_list_id    = $image_list->pageSectionElements->pluck('id')->toArray();
-
-        foreach ($request['list_title'] as $i=>$title){
-
-            $section     = $this->model->find($request['list_id'][$i]);
-            $heading     =  array_key_exists($i, $request->input('title')) ? $request->input('title')[$i] : null;
-            $subheading  =  array_key_exists($i, $request->input('subtitle')) ? $request->input('subtitle')[$i] : null;
-
-            if ($request->file('image_input') && array_key_exists($i,$request->file('image_input'))){
-                $image_name  = $this->updateImage( $request->file('image_input')[$i],'800','600');
-                $request->request->add(['image_'.$i => $image_name]);
-                if ($section && $section->image){
-                    $this->deleteImage($section->image);
-                }
-            }
-
-            $this->model->updateOrCreate(
-                [   'id'              => $request['list_id'][$i],
-                    'page_section_id' => $data['section_id']
-                ], [
-                'title'               => $heading,
-                'subtitle'            => $subheading,
-                'image'               => $request['image_'.$i] ?? $section->image ??  null,
-                'list_title'          => $title,
-                'list_subtitle'       => $this->model->changeTokey($request['list_title'][$i]),
-                'list_description'    => $request['list_description'][$i],
-                'status'              => $request['status'],
-                'created_by'          => $request['created_by'],
-                'updated_by'          => $request['updated_by']
-            ]);
-        }
-
-        foreach ($image_list_id as $value){
-            if(!in_array($value,$request->input('list_id'))){
-                $element = $this->model->find($value);
-                $this->deleteImage($element->image);
-                $element->forceDelete();
-            }
-        }
     }
 }
