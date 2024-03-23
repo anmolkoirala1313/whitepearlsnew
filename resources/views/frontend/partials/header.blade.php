@@ -138,7 +138,7 @@
             <div class="main-header__inner">
                 <div class="main-header__logo">
                     <a href="/">
-                        <img src="{{ $setting_data->logo ?  asset(imagePath($setting_data->logo)) : asset(imagePath($setting_data->logo_white))}}" width="142">
+                        <img src="{{ $setting_data->logo ?  asset(imagePath($setting_data->logo)) : asset(imagePath($setting_data->logo_white))}}" width="250">
                     </a>
                 </div><!-- /.main-header__logo -->
                 <div class="main-header__nav__wrapper">

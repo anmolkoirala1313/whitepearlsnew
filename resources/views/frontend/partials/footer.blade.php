@@ -13,7 +13,7 @@
                 <div class="col-md-6 col-xl-3">
                     <div class="footer-widget footer-widget--about">
                         <a href="/" class="footer-widget__logo">
-                            <img src="{{ $setting_data->logo_white ?  asset(imagePath($setting_data->logo_white)) : asset(imagePath($setting_data->logo))}}" width="155" alt="">
+                            <img src="{{ $setting_data->logo_white ?  asset(imagePath($setting_data->logo_white)) : asset(imagePath($setting_data->logo))}}" width="260" alt="">
                         </a>
                         <div class="text-align-justify">
                             {!! ucfirst(@$setting_data->description ?? '') !!}
