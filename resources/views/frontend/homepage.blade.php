@@ -477,72 +477,107 @@
         </div>
     @endif
 
+    @if(count($data['homepage']->coreValueDetail))
+        <section class="service-three" style="background-color:  #f4f3f8;">
+            <div class="container">
+                <div class="sec-title">
+
+                    <h6 class="sec-title__tagline">{{ $data['homepage']->core_subtitle ?? '' }}</h6><!-- /.sec-title__tagline -->
+
+                    <h3 class="sec-title__title">{{ $data['homepage']->core_title ?? '' }}</h3><!-- /.sec-title__title -->
+                </div><!-- /.sec-title -->
+
+                <div class="row gutter-y-30 mt-20">
+                    @foreach($data['homepage']->coreValueDetail as $index=>$core_value)
+                        <div class="col-md-6 col-lg-6 d-flex align-items-stretch">
+                            <div class="service-three-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='0ms'>
+                                <div class="service-three-card__inner">
+                                    <div class="service-three-card__icon">
+                                        <i class="{{ core_value_icon($index) }}"></i>
+                                    </div>
+                                    <div class="service-three-card__content">
+                                        <div class="service-three-card__img" style="background-image: url({{ asset('assets/frontend/images/service/service-3-bg.jpg') }});">
+                                        </div>
+                                        <h3 class="service-three-card__title">
+                                            <a>{{ $core_value->title ?? '' }}</a>
+                                        </h3><!-- /.service-three-card__title -->
+                                        <p class="service-three-card__info">{{ $core_value->description ?? '' }}</p>
+                                    </div><!-- /.service-three-card__content -->
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.service-page -->
+    @endif
 
 
-{{--    @if(count($testimonials) > 0)--}}
-{{--        <section class="testimonials-one">--}}
-{{--            <div class="testimonials-one__bg" style="background-image: url('{{ asset('assets/frontend/images/backgrounds/testimonail-one-bg.jpg') }}');"></div>--}}
-{{--            <div class="container-fluid">--}}
-{{--                <div class="testimonials-one__heading">--}}
-{{--                    <div class="sec-title">--}}
+    @if(count($data['testimonials'])>0)
+        <section class="testimonials-one">
+            <div class="testimonials-one__bg" style="background-image: url('{{ asset('assets/frontend/images/backgrounds/testimonail-one-bg.jpg') }}');"></div>
+            <div class="container-fluid">
+                <div class="testimonials-one__heading">
+                    <div class="sec-title">
 
-{{--                        <h6 class="sec-title__tagline">Our Success Stories</h6>--}}
+                        <h6 class="sec-title__tagline">Our Success Stories</h6>
 
-{{--                        <h3 class="sec-title__title">Hear what they’re talking about us</h3>--}}
-{{--                    </div><!-- /.sec-title -->--}}
-{{--                    <p class="testimonials-one__info">Live through our testimonials and stories to better understand how we operate and deliver success</p>--}}
-{{--                </div>--}}
-{{--                <div class="testimonials-one__carousel modins-owl__carousel modins-owl__carousel--with-shadow modins-owl__carousel--basic-nav owl-carousel" data-owl-options='{--}}
-{{--                "items": 1,--}}
-{{--                "margin": 0,--}}
-{{--                "loop": true,--}}
-{{--                "smartSpeed": 700,--}}
-{{--                "nav": false,--}}
-{{--                "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],--}}
-{{--                "dots": true,--}}
-{{--                "autoplay": true,--}}
-{{--                "responsive": {--}}
-{{--                    "0": {--}}
-{{--                        "items": 1--}}
-{{--                    },--}}
-{{--                    "576": {--}}
-{{--                        "items": 2,--}}
-{{--                        "margin":30--}}
-{{--                    },--}}
-{{--                    "992": {--}}
-{{--                        "items": 2,--}}
-{{--                        "margin": 30--}}
-{{--                    }--}}
-{{--                }--}}
-{{--            }'>--}}
-{{--                    @foreach($testimonials as $testimonial)--}}
-{{--                        <div class="item align-items-stretch d-flex">--}}
-{{--                            <div class="testimonials-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>--}}
-{{--                                <div class="testimonials-card__inner h-100">--}}
-{{--                                    <div class="shape-one"><img src="{{ asset('assets/frontend/images/shapes/testi-shape-one.png') }}" alt="shape"></div>--}}
-{{--                                    <div class="testimonials-card__top">--}}
-{{--                                        <div class="testimonials-card__image">--}}
-{{--                                            <img src="{{asset('/images/testimonial/'.@$testimonial->image)}}" alt="Kevin martin">--}}
-{{--                                        </div>--}}
-{{--                                        <div class="testimonials-card__top__left">--}}
-{{--                                            <h3 class="testimonials-card__name">--}}
-{{--                                                {{ucfirst($testimonial->name)}}--}}
-{{--                                            </h3>--}}
-{{--                                            <p class="testimonials-card__designation">{{ucfirst($testimonial->position)}}</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="testimonials-card__content text-align-justify">--}}
-{{--                                        {{ucfirst($testimonial->description)}}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    @endforeach--}}
-{{--                </div>--}}
+                        <h3 class="sec-title__title">Hear what they’re talking about us</h3>
+                    </div><!-- /.sec-title -->
+                    <p class="testimonials-one__info">Live through our testimonials and stories to better understand how we operate and deliver success</p>
+                </div>
+                <div class="testimonials-one__carousel modins-owl__carousel modins-owl__carousel--with-shadow modins-owl__carousel--basic-nav owl-carousel" data-owl-options='{
+                "items": 1,
+                "margin": 0,
+                "loop": true,
+                "smartSpeed": 700,
+                "nav": false,
+                "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+                "dots": true,
+                "autoplay": true,
+                "responsive": {
+                    "0": {
+                        "items": 1
+                    },
+                    "576": {
+                        "items": 2,
+                        "margin":30
+                    },
+                    "992": {
+                        "items": 2,
+                        "margin": 30
+                    }
+                }
+            }'>
+                    @foreach($data['testimonials'] as $index=>$testimonial)
+                        <div class="item align-items-stretch d-flex">
+                            <div class="testimonials-card wow h-100 fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>
+                                <div class="testimonials-card__inner h-100">
+                                    <div class="shape-one"><img src="{{ asset('assets/frontend/images/shapes/testi-shape-one.png') }}" alt="shape"></div>
+                                    <div class="testimonials-card__top">
+                                        <div class="testimonials-card__image">
+                                            <img src="{{ asset(imagePath($testimonial->image))}}" alt="Kevin martin">
+                                        </div>
+                                        <div class="testimonials-card__top__left">
+                                            <h3 class="testimonials-card__name">
+                                                {{ $testimonial->title ?? '' }}
+                                            </h3>
+                                            <p class="testimonials-card__designation">{{ $testimonial->position ?? '' }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="testimonials-card__content text-align-justify">
+                                        {{ $testimonial->description }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
 
-{{--            </div>--}}
-{{--        </section>--}}
-{{--    @endif--}}
+            </div>
+        </section>
+    @endif
 
 {{--    @if(count($latestPosts) > 0)--}}
 {{--        <section class="blog-one blog-one--home">--}}

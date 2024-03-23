@@ -29,7 +29,7 @@
             @include($view_path.'includes.details')
         @endforeach
     @else
-        @for ($i = 0; $i <= 5; $i++)
+        @for ($i = 0; $i <= 3; $i++)
             @include($view_path.'includes.details')
         @endfor
     @endif
