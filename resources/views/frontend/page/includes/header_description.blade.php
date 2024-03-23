@@ -1,20 +1,14 @@
-<section class="portfolio-details" style="padding: 0px;">
+<section class="portfolio-details pt-0">
     <div class="container">
+        @if($element->first()->subtitle)
+            <div class="sec-title sec-title-stand">
+                <h3 class="sec-title__title"> {{$element->first()->subtitle ?? '' }}</h3>
+            </div>
+        @endif
         <div class="row">
-            <div class="portfolio-details__bottom">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12">
-                        <div class="portfolio-details__left">
-                            @if($element->first()->subtitle)
-                                <h3 class="portfolio-details__title">
-                                    {{$element->first()->subtitle ?? '' }}
-                                </h3>
-                            @endif
-                            <div class="portfolio-details__text-1 text-align-justify custom-description">
-                                {!! $element->first()->description ?? '' !!}
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-md-12 col-lg-12">
+                <div class="portfolio-details__content custom-description text-align-justify">
+                    {!! $element->first()->description ?? '' !!}
                 </div>
             </div>
         </div>

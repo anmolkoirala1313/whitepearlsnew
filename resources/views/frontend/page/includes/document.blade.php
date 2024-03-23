@@ -1,4 +1,4 @@
-<section class="portfolio-page" style="padding: 100px 0 40px;">
+<section class="portfolio-page" style="padding: 100px 0 40px;background-image: url('http://localhost:8000/assets/frontend/images/pattern/blog-bg-3.jpg');">
     <div class="container">
         <div class="row">
             <div class="col-xl-5">
