@@ -67,6 +67,7 @@ class JobController extends BackendBaseController
         if(!$data['row']){
             abort(404);
         }
+        $data['latest']         = $this->model->active()->descending()->whereNotIn('id',[$data['row']->id])->limit(3)->get();
 
         return view($this->loadResource($this->view_path.'show'), compact('data'));
     }
