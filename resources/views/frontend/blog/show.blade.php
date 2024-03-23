@@ -5,47 +5,56 @@
 
     @include($module.'includes.breadcrumb',['breadcrumb_image'=>'image-3.jpeg'])
 
-    <section class="news-details">
+    <section class="blog-one blog-one--page">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-8 col-lg-7">
-                    <div class="news-details__left">
-                        <div class="news-details__img">
-                            <img class="lazy" data-src="{{ asset(imagePath($data['row']->image)) }}" alt="">
-                        </div>
-                        <div class="news-details__author-and-meta">
-                            <div class="news-details__meta">
-                                <p><span class="fas fa-calendar"></span>{{date('d M Y', strtotime($data['row']->created_at))}}</p>
-                                <p> <a href="{{ route('frontend.blog.category', $data['row']->blogCategory->slug)}}" >
-                                    <span class="fas fa-list-alt"></span>
-                                        {{ $data['row']->blogCategory->title ?? ''}}
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        <h3 class="news-details__title-1">
-                            {{ $data['row']->title ?? '' }}
-                        </h3>
-                        <div class="news-details__text-2 text-align-justify custom-description">{!!  $data['row']->description !!}</div>
-                        <div class="news-details__tag-and-social">
-                            <div class="news-details__tag">
-                            </div>
-                            <div class="news-details__social">
-                                <span>Share on:</span>
-                                <a href="#"><i class="fab fa-facebook" onclick='fbShare("{{route('frontend.blog.show',$data['row']->slug)}}")'></i></a>
-                                <a href="#"><i class="fab fa-twitter" onclick='twitShare("{{route('frontend.blog.show',$data['row']->slug)}}","{{ $data['row']->title }}")'></i></a>
-                                <a href="#"><i class="fab fa-whatsapp" onclick='whatsappShare("{{route('frontend.blog.show',$data['row']->slug)}}","{{ $data['row']->title }}")'></i></a>
+            <div class="row gutter-y-60">
+                <div class="col-lg-8">
 
+                    <div class="blog-details">
+                        <div class="blog-card blog-card-two">
+                            <div class="blog-card__image-wrap">
+                                <div class="blog-card__image">
+                                    <img class="lazy" data-src="{{ asset(imagePath($data['row']->image)) }}" alt="">
+                                </div>
+                                <div class="blog-card__date"><span>{{date('d', strtotime($data['row']->created_at))}}</span>
+                                    {{date('M Y', strtotime($data['row']->created_at))}}</div>
+                            </div><!-- /.blog-card__image -->
+                            <div class=" blog-card-two__content">
+                                <h3 class="blog-card__title"> {{ $data['row']->title ?? '' }}</h3>
+                                <div class="blog-card-two__text custom-description text-align-justify">
+                                    {!!  $data['row']->description !!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-details__meta">
+                            <div class="blog-details__tags">
+                                <h4 class="blog-details__tags__title">Category</h4><!-- /.blog-details__tags__title -->
+                                <div class="sidebar__tags">
+                                    <a href="{{ route('frontend.blog.category', $data['row']->blogCategory->slug)}}">  {{ $data['row']->blogCategory->title ?? ''}}</a>
+                                </div>
+                            </div>
+                            <div class="blog-details__social">
+                                <a href="#" tabindex="0" rel="noopener" aria-label="facebook">
+                                    <i onclick='fbShare("{{route('frontend.blog.show',$data['row']->slug)}}")'
+                                       class="fab fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#" tabindex="0" rel="noopener" aria-label="twitter">
+                                    <i onclick='twitShare("{{route('frontend.blog.show',$data['row']->slug)}}","{{ $data['row']->title }}")'
+                                       class="fab fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#" tabindex="0" rel="noopener" aria-label="pinterest">
+                                    <i onclick='whatsappShare("{{route('frontend.blog.show',$data['row']->slug)}}","{{ $data['row']->title }}")'
+                                       class="fab fa-whatsapp" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
+
                 </div>
-                <div class="col-xl-4 col-lg-5">
+                <div class="col-lg-4">
                     @include($view_path.'includes.sidebar')
                 </div>
             </div>
         </div>
     </section>
+
 @endsection
 
 @section('js')
