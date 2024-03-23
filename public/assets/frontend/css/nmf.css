@@ -4428,11 +4428,11 @@ body.megamenu-popup-active .mobile-nav__content {
   --bs-gutter-x: 15px;
 }
 .testimonials-one--page {
-  padding-top: 120px;
+  padding-top: 60px;
 }
 .testimonials-one--page .testimonials-one__carousel .owl-dots {
   position: relative;
-  margin-top: 60px !important;
+  margin-top: 10px !important;
   left: 0;
   right: 0;
   text-align: center;
@@ -4656,7 +4656,11 @@ body.megamenu-popup-active .mobile-nav__content {
 }
 
 .testimonials-two-slider {
-  padding-bottom: 120px;
+  padding-bottom: 60px;
+}
+
+.testimonials-two-slider .sec-title{
+    text-align: center;
 }
 
 /*--------------------------------------------------------------

@@ -20,7 +20,7 @@ class BlogController extends BackendBaseController
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.news.blog.';
     protected string $view_path     = 'backend.news.blog.';
-    protected string $page         = 'Blog';
+    protected string $page          = 'Blog';
     protected string $folder_name   = 'blog';
     protected string $page_title, $page_method, $image_path;
     protected object $model;

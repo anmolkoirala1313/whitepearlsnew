@@ -513,6 +513,84 @@
         </section><!-- /.service-page -->
     @endif
 
+    @if(count($data['director']) > 0)
+        <section class="testimonials-two-slider testimonials-one--page">
+            <div class="container">
+                <div class="sec-title">
+
+                    <h6 class="sec-title__tagline">Read our thoughts</h6><!-- /.sec-title__tagline -->
+
+                    <h3 class="sec-title__title">Message from our <br> Directors</h3><!-- /.sec-title__title -->
+                </div>
+                <div class="testimonials-one__carousel modins-owl__carousel modins-owl__carousel--with-shadow modins-owl__carousel--basic-nav owl-carousel owl-theme" data-owl-options='{
+                "items": 1,
+                "margin": 0,
+                "loop": false,
+                "smartSpeed": 700,
+                "nav": false,
+                "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+                "dots": true,
+                "autoplay": false,
+                "responsive": {
+                    "0": {
+                        "items": 1
+                    },
+                    "576": {
+                        "items": 1,
+                        "margin": 15
+                    },
+                    "992": {
+                        "items": 1,
+                        "margin": 15
+                    }
+                }
+            }'>
+                @foreach($data['director'] as $index=>$director)
+                    <div class="item">
+                        <div class="testimonials-two__card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>
+                            <div class="testimonials-two__inner">
+                                <div class="testimonials-two__top">
+                                    <div class="testimonials-two__top__left">
+                                        <div class="testimonials-two__rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div><!-- /.testimonials-two__rating -->
+                                        <div class="testimonials-two__content text-align-justify">
+                                            {{ $director->description ?? '' }}
+                                            @if($director->link)
+                                                <div class="about-one-home__content__wrapper" style="align-items: center">
+                                                    <div>
+                                                        <a href="{{ $director->link }}" class="modins-btn modins-btn--base"><span>{{ $director->link ?? 'Read More' }}</span>
+                                                            <em></em></a>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div><!-- /.testimonials-two__content -->
+
+                                    </div><!-- /.testimonials-two__top__left -->
+                                    <div class="testimonials-two__image">
+                                        <div class="testimonials-two__avata">
+                                            <img class="avata" src="{{ asset(thumbnailImagePath($director->image)) }}" alt="" style="border-radius: 50%">
+                                        </div>
+                                        <p class="testimonials-two__designation">{{ $director->designation ?? '' }}</p>
+                                        <h3 class="testimonials-two__name">
+                                            {{ $director->title ?? '' }}
+                                        </h3><!-- /.testimonials-two__name -->
+                                    </div><!-- /.testimonials-two__image -->
+                                </div><!-- /.testimonials-two__top -->
+                            </div><!-- /.testimonials-two__inner -->
+                        </div><!-- /.testimonials-two -->
+                    </div>
+                @endforeach
+
+                </div><!-- /.testimonials-one__carousel -->
+
+            </div>
+        </section>
+    @endif
 
     @if(count($data['testimonials'])>0)
         <section class="testimonials-one">
@@ -579,51 +657,87 @@
         </section>
     @endif
 
-{{--    @if(count($latestPosts) > 0)--}}
-{{--        <section class="blog-one blog-one--home">--}}
-{{--            <div class="container">--}}
-{{--                <div class="sec-title">--}}
+    @if(count($data['blogs'])>0)
+        <section class="blog-one blog-one--home">
+            <div class="container">
+                <div class="sec-title">
 
-{{--                    <h6 class="sec-title__tagline">Recent News Feed</h6><!-- /.sec-title__tagline -->--}}
+                    <h6 class="sec-title__tagline">Recent News Feed</h6><!-- /.sec-title__tagline -->
 
-{{--                    <h3 class="sec-title__title">Latest news & articles <br> from the blog</h3><!-- /.sec-title__title -->--}}
-{{--                </div>--}}
-{{--                <div class="row gutter-y-40">--}}
-{{--                    @foreach(@$latestPosts as $index=>$post)--}}
-{{--                        <div class="col-md-6 col-lg-4">--}}
-{{--                            <div class="blog-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='00ms'>--}}
-{{--                                <div class="blog-card__image-wrap">--}}
-{{--                                    <div class="blog-card__image">--}}
-{{--                                        <img src="{{asset('/images/blog/thumb/thumb_'.@$post->image)}}" alt="">--}}
-{{--                                        <img src="{{asset('/images/blog/thumb/thumb_'.@$post->image)}}" alt="">--}}
-{{--                                        <a href="{{route('blog.single',$post->slug)}}" class="blog-card__image__link"><span class="sr-only">--}}
-{{--                                             {{ucfirst(@$post->title)}}</span>--}}
-{{--                                        </a>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="blog-card__date"><span>{{date('d', strtotime($post->created_at))}}</span>--}}
-{{--                                        {{date('M Y', strtotime($post->created_at))}}</div>--}}
-{{--                                </div>--}}
-{{--                                <div class="blog-card__content">--}}
-{{--                                    <ul class="list-unstyled blog-card__meta">--}}
-{{--                                        <li><a href="{{route('blog.single',@$post->slug)}}">--}}
-{{--                                                <i class="fas fa-list-alt"></i>--}}
-{{--                                                {{ucfirst(@$post->category->name)}}</a></li>--}}
-{{--                                    </ul><!-- /.list-unstyled blog-card__meta -->--}}
-{{--                                    <h3 class="blog-card__title"><a href="{{route('blog.single',$post->slug)}}">--}}
-{{--                                            {{ucfirst(@$post->title)}} </a></h3>--}}
-{{--                                    <a href="{{route('blog.single',$post->slug)}}" class="blog-card__link">--}}
-{{--                                        <span>Read more</span>--}}
-{{--                                        <i class="icon-right-arrow"></i>--}}
-{{--                                    </a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    @endforeach--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </section>--}}
-{{--    @endif--}}
+                    <h3 class="sec-title__title">Latest news & articles <br> from the blog</h3><!-- /.sec-title__title -->
+                </div>
+                <div class="row gutter-y-40">
+                    @foreach($data['blogs'] as $blog)
+                        <div class="col-md-6 col-lg-4">
+                            <div class="blog-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='00ms'>
+                                <div class="blog-card__image-wrap">
+                                    <div class="blog-card__image">
+                                        <img src="{{ asset(thumbnailImagePath($blog->image))}}" alt="">
+                                        <img src="{{ asset(thumbnailImagePath($blog->image))}}" alt="">
+                                        <a href="{{ route('frontend.blog.show', $blog->slug) }}" class="blog-card__image__link"><span class="sr-only">
+                                             {{ucfirst(@$post->title)}}</span>
+                                        </a>
+                                    </div>
+                                    <div class="blog-card__date"><span>{{date('d', strtotime($blog->created_at))}}</span>
+                                        {{date('M Y', strtotime($blog->created_at))}}</div>
+                                </div>
+                                <div class="blog-card__content">
+                                    <ul class="list-unstyled blog-card__meta">
+                                        <li><a href="{{ route('frontend.blog.show', $blog->slug) }}">
+                                                <i class="fas fa-list-alt"></i>
+                                                {{ $blog->blogCategory->title ?? '' }}</a></li>
+                                    </ul><!-- /.list-unstyled blog-card__meta -->
+                                    <h3 class="blog-card__title"><a href="{{ route('frontend.blog.show', $blog->slug) }}">
+                                            {{ $blog->title ?? '' }} </a></h3>
+                                    <a href="{{ route('frontend.blog.show', $blog->slug) }}" class="blog-card__link">
+                                        <span>Read more</span>
+                                        <i class="icon-right-arrow"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
 
+    @if($data['homepage']->grievance_title)
+        <section class="contact-one pt-100" style="    padding-bottom: 20px;background-color: #f4f3f8;">
+            <div class="container">
+                <div class="contact-one__inner">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="sec-title">
+                                <h6 class="sec-title__tagline">{{ $data['homepage']->grievance_subtitle ?? '' }}</h6>
+                                <h3 class="sec-title__title">{{ $data['homepage']->grievance_title ?? '' }}</h3>
+                            </div>
+                            <div class="contact-one__text text-align-justify custom-description" style="    max-width: max-content;">
+                                {{ $data['homepage']->grievance_description }}
+                            </div>
+                            @if($data['homepage']->grievance_link)
+                                <div class="about-one-home__content__wrapper">
+                                    <div>
+                                        <a href="{{ $data['homepage']->grievance_link }}" class="modins-btn modins-btn--base"><span>{{ $data['homepage']->grievance_button ?? 'Contact Us' }}</span>
+                                            <em></em></a>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="col-md-6">
+                            <div class="contact-one__form__box" style="padding: 10px;">
+                                @if($data['map'])
+                                <iframe src="{{$data['map']}}"
+                                        width="550" height="690" style="border:0;"
+                                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
     {{--    <div class="cta-one cta-one__home">--}}
     {{--        <div class="container">--}}
     {{--            <div class="cta-one__inner">--}}
